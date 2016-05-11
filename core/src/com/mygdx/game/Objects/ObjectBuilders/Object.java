@@ -21,7 +21,6 @@ public class Object
     {
         this.physicsContent = physicsContent;
     }
-
     public void show()
     {
         Gdx.app.log(graphicsContent.nazwa,"");
