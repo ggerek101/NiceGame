@@ -21,7 +21,6 @@ public abstract class Object
 
     public Object()
     {
-
     }
 
     public void setBody(Body b)
@@ -47,6 +46,8 @@ public abstract class Object
         sprite.setPosition(x, y);
         sprite.setSize(width, height);
         sprite.flip(false, false);
+
+        body.setTransform(sprite.getX(), sprite.getY(), 0);
     }
 
     private Vector2 getSpritePositionConvertedToBox()
@@ -59,6 +60,7 @@ public abstract class Object
     public void draw(SpriteBatch spriteBatch)
     {
         Vector2 positionConvertedToBox = getSpritePositionConvertedToBox();
+
         spriteBatch.begin();
         sprite.setPosition(positionConvertedToBox.x, positionConvertedToBox.y);
         sprite.draw(spriteBatch);
@@ -66,5 +68,6 @@ public abstract class Object
     }
 
     public abstract void action();
+    public abstract void setProperties();
 
 }

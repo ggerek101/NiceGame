@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Box2d.Box2dWorld;
 
 import javafx.scene.layout.Background;
 
@@ -12,6 +14,7 @@ import javafx.scene.layout.Background;
  */
 public class Graphics
 {
+    public static Vector2 centerOfCamera = new Vector2();
     SpriteBatch spriteBatch;
     OrthographicCamera camera;
 
@@ -21,6 +24,8 @@ public class Graphics
         camera = new OrthographicCamera(1200, 1920f);
         camera.setToOrtho(false, 12f, 19.2f);
         spriteBatch.setProjectionMatrix(camera.combined);
+
+        centerOfCamera.set(Box2dWorld.toReal(camera.viewportWidth / 2), Box2dWorld.toReal(camera.viewportHeight / 2));
     }
 
   /*  public static void setCameraToHero(float y)

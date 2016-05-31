@@ -11,4 +11,9 @@ public class Block extends Object
     public void action() {
         Gdx.app.log("Jestem obiektem: ", "Block");
     }
+
+    @Override
+    public void setProperties() {
+
+    }
 }

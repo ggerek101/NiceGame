@@ -52,6 +52,7 @@ public class ObjectFactory
         object.setTexture(texture);
         object.setSprite(sprite);
         object.setBody(body);
+        object.setProperties();
         object.makeToBox();
 
         return object;

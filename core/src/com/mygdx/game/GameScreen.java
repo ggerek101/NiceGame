@@ -32,18 +32,20 @@ public class GameScreen implements Screen
         box2dWorld = new Box2dWorld();
         objectFactory = new ObjectFactory(box2dWorld);
         objects = new Vector<Object>();
+
+        objects.add(objectFactory.getObject(ObjectFactory.ObjectType.PLAYER));
     }
 
     @Override
     public void render(float delta)
     {
+        box2dWorld.update();
+        graphics.update();
         for(int i = 0; i != objects.size(); i++)
         {
             objects.get(i).action();
             objects.get(i).draw(graphics.getSpriteBatch());
         }
-        box2dWorld.update();
-        graphics.update();
     }
 
     @Override

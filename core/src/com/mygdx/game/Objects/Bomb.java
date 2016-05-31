@@ -8,4 +8,9 @@ public class Bomb extends Object {
     public void action() {
 
     }
+
+    @Override
+    public void setProperties() {
+
+    }
 }

@@ -47,6 +47,12 @@ public class Box2dWorld
         return value * 0.01f;
     }
 
+    public static float toReal(float value)
+    {
+        return value * 100f;
+    }
+
+
 
     public void update()
     {
