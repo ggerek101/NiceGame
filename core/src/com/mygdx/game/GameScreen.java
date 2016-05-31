@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Screen;
 import com.mygdx.game.Box2d.Box2dWorld;
+import com.mygdx.game.Graphics.Graphics;
 import com.mygdx.game.Objects.Object;
 import com.mygdx.game.Objects.ObjectFactory;
 
@@ -14,6 +15,7 @@ public class GameScreen implements Screen
 {
     final NiceGame niceGame;
 
+    Graphics graphics;
     Box2dWorld box2dWorld;
     ObjectFactory objectFactory;
     Vector<Object>objects;
@@ -26,8 +28,9 @@ public class GameScreen implements Screen
     @Override
     public void show()
     {
+        graphics = new Graphics();
         box2dWorld = new Box2dWorld();
-        objectFactory = new ObjectFactory();
+        objectFactory = new ObjectFactory(box2dWorld);
         objects = new Vector<Object>();
     }
 
@@ -37,8 +40,10 @@ public class GameScreen implements Screen
         for(int i = 0; i != objects.size(); i++)
         {
             objects.get(i).action();
+            objects.get(i).draw(graphics.getSpriteBatch());
         }
         box2dWorld.update();
+        graphics.update();
     }
 
     @Override

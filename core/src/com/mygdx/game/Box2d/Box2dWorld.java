@@ -13,14 +13,14 @@ import com.badlogic.gdx.physics.box2d.World;
  */
 public class Box2dWorld
 {
-    static World world;
+    World world;
 
     public Box2dWorld()
     {
-        world = new World(new Vector2(0, -10), true);
+        world = new World(new Vector2(0, 0), true);
     }
 
-    public static Body getBody(Sprite sprite, BodyDef.BodyType bodyType)
+    public Body getBody(Sprite sprite, BodyDef.BodyType bodyType)
     {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = bodyType;
@@ -41,6 +41,12 @@ public class Box2dWorld
         shape.dispose();
         return body;
     }
+
+    public static float toBox(float value)
+    {
+        return value * 0.01f;
+    }
+
 
     public void update()
     {

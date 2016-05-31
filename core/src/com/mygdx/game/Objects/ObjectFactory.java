@@ -12,12 +12,13 @@ import com.mygdx.game.Box2d.Box2dWorld;
  */
 public class ObjectFactory
 {
+    Box2dWorld box2dWorld;
     private Object object;
-    public enum ObjectType{BadBlock, GoodBlock, Block}
+    public enum ObjectType{PLAYER, BOMB , BLOCK}
 
-    public ObjectFactory()
+    public ObjectFactory(Box2dWorld box2dWorld)
     {
-
+        this.box2dWorld = box2dWorld;
     }
 
     public Object getObject(ObjectType objectType)
@@ -27,30 +28,32 @@ public class ObjectFactory
 
         switch (objectType)
         {
-            case GoodBlock:
-                object = new GoodBlock();
-                pathToFile = "badlogic.jpg";
-                bodyType = BodyDef.BodyType.KinematicBody;
-                break;
-            case BadBlock:
-                object = new BadBlock();
-                pathToFile = "badlogic.jpg";
-                bodyType = BodyDef.BodyType.KinematicBody;
-                break;
-            case Block:
-                object = new Block();
+            case PLAYER:
+                object = new Player();
                 pathToFile = "badlogic.jpg";
                 bodyType = BodyDef.BodyType.DynamicBody;
+                break;
+            case BOMB:
+                object = new Bomb();
+                pathToFile = "badlogic.jpg";
+                bodyType = BodyDef.BodyType.StaticBody;
+                break;
+            case BLOCK:
+                object = new Block();
+                pathToFile = "badlogic.jpg";
+                bodyType = BodyDef.BodyType.StaticBody;
                 break;
         }
 
         Texture texture = new Texture(Gdx.files.internal(pathToFile));
         Sprite sprite = new Sprite(texture);
-        Body body = Box2dWorld.getBody(sprite,bodyType);
+        Body body = box2dWorld.getBody(sprite,bodyType);
 
         object.setTexture(texture);
         object.setSprite(sprite);
         object.setBody(body);
+        object.makeToBox();
+
         return object;
     }
 }
